@@ -1,5 +1,3 @@
-#include <iostream>
-
 class Node {
 public:
     Node* previous;
