@@ -6,16 +6,16 @@ template <typename T>
 void bubble_sort(std::vector<T>& vec) {
     if (vec.empty()) return;
     
-    bool swaped;
+    bool swapped;
     for (size_t i = 1; i < vec.size(); i++) {
-        swaped = false;
+        swapped = false;
         for (size_t j = 0; j < vec.size() - i; j++) {
             if (vec[j] > vec[j + 1]) {
                 std::swap(vec[j], vec[j+ 1]);
-                swaped = true;
+                swapped = true;
             }
         }
-        if (!swaped) break;
+        if (!swapped) break;
     }
 }
 
