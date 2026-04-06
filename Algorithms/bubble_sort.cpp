@@ -3,6 +3,14 @@
 #include <vector>
 
 template <typename T>
+void print_vector(const std::vector<T>& vec) {
+    for (const auto& element : vec) {
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
+}
+
+template <typename T>
 void bubble_sort(std::vector<T>& vec) {
     if (vec.empty()) return;
     
@@ -19,17 +27,9 @@ void bubble_sort(std::vector<T>& vec) {
     }
 }
 
-template <typename T>
-void print_vector(const std::vector<T>& vec) {
-    for (const auto& element : vec) {
-        std::cout << element << " ";
-    }
-    std::cout << std::endl;
-}
-
 int main() {
-    std::vector<int> v = {0, 5, 20, 3, 10};
+    std::vector<int> vector = {0, 5, 20, 3, 10};
 
-    bubble_sort(v);
-    print_vector(v);
+    bubble_sort(vector);
+    print_vector(vector);
 }

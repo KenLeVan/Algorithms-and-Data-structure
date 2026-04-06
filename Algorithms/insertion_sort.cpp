@@ -11,25 +11,24 @@ void vector_print(const std::vector<T>& vec) {
 }
 
 template <typename T>
-void selection_sort(std::vector<T>& vec) {
+void insertion_sort(std::vector<T>& vec) {
     if (vec.empty()) return;
 
     for (size_t i = 0; i < vec.size() - 1; i++) {
-        size_t min_index = i;
+        const T element = vec[i + 1];
+        size_t j = i + 1;
 
-        for (size_t j = i + 1; j < vec.size(); j++) {
-            if (vec[j] < vec[min_index]) {
-                min_index = j;
-            }
+        for (; j > 0 && vec[j - 1] > element; j--) {
+            vec[j] = vec[j - 1];
         }
-
-        std::swap(vec[min_index], vec[i]);
+        
+        vec[j] = element;
     }
 }
 
 int main() {
-    std::vector<int> vector = {0, 10, 20, 7, 13};
+    std::vector<int> vector = {5, 11, 15, 6, 24, 14, 0, -2};
 
-    selection_sort(vector);
+    insertion_sort(vector);
     vector_print(vector);
 }
