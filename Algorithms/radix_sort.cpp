@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <cmath>
 #include <map>
 
 template <typename T>
@@ -12,49 +11,32 @@ void vector_print(const std::vector<T>& vec) {
     std::cout << std::endl;
 }
 
-int get_digit(const int& num, const int& n) {
-    return (num / (int)pow(10, n)) % 10;
-}
-
 void radix_sort(std::vector<int>& vec) {
     if (vec.empty()) return;
 
     int min = *std::min_element(vec.begin(), vec.end());
+    int max = *std::max_element(vec.begin(), vec.end());
+    int exp = 1;
 
     for (auto& element : vec) {
         element -= min;
     }
 
-    bool swapped = true;
-    size_t i = 0;
-    
-    while(swapped) {
-        swapped = false;
-
-        std::vector<std::pair<int, int>> counts;
-        for (const auto& element : vec) {
-            counts.push_back({get_digit(element, i), element});
-            if (get_digit(element, i) != 0) {
-                swapped = true;
-            }
-        }
-
+    while((max - min) / exp > 0) {
         std::map<int, std::vector<int>> count_sort;
-        for (const auto& pair : counts) {
-            count_sort[pair.first].push_back(pair.second);
+        for (const auto& element : vec) {
+            int digit = (element / exp) % 10;
+            count_sort[digit].push_back(element);
         }
 
-        std::vector<int> sorted;
-        sorted.reserve(vec.size());
-
+        int idx = 0;
         for (size_t j = 0; j < 10; j++) {
             for (const int& num : count_sort[j]) {
-                sorted.push_back(num);
+                vec[idx++] = num;
             }
         }
 
-        vec = sorted;
-        i++;
+        exp *= 10;
     }
 
     for (auto& element : vec) {
@@ -63,7 +45,7 @@ void radix_sort(std::vector<int>& vec) {
 }
 
 int main() {
-    std::vector<int> vector = {501, 122, 450, 67, 1077, 306};
+    std::vector<int> vector = {501, 122, 450, 67, 1077, 306, -201};
 
     radix_sort(vector);
     vector_print(vector);
