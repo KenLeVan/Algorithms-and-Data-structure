@@ -4,7 +4,7 @@
 
 template <typename T>
 void vector_print(const std::vector<T>& v) {
-    for (const T& item : v) {
+    for (const auto& item : v) {
         std::cout << item << ' ';
     }
     std::cout << std::endl;
