@@ -14,12 +14,12 @@ void vector_print(const std::vector<T>& v) {
 
 template <typename T>
 bool DFS_recursive(
-        const std::map<T, std::vector<T>>& adj,
-        const T& current_node,
-        const T& target_node,
-        std::vector<T>& path,
-        std::unordered_set<T>& is_visited
-        ) {
+    const std::map<T, std::vector<T>>& adj,
+    const T& current_node,
+    const T& target_node,
+    std::vector<T>& path,
+    std::unordered_set<T>& is_visited
+) {
 
     is_visited.insert(current_node);
     if (current_node == target_node) {
