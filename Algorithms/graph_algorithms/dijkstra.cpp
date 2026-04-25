@@ -6,13 +6,6 @@
 #include <set>
 
 template <typename T>
-struct Edge {
-    T from;
-    T to;
-    int weight;
-};
-
-template <typename T>
 void dijkstra(
     const std::vector<T>& nodes,
     const std::map<char, std::vector<std::pair<char, int>>>& adj,
